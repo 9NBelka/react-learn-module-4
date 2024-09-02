@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Articles from '../Articles/Articles'
 import { fetchArticles } from '../../articles-api'
+import SearchForm from '../SearchForm/SearchForm'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   },[])
   return (
     <>
+      <SearchForm />
       {articles.length > 0 && <Articles items={articles}></Articles>} 
     </>
   )

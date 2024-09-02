@@ -1,7 +1,14 @@
 import axios from "axios"
-export const fetchArticles = async () => {
+
+axios.defaults.baseURL = "http://hn.algolia.com/api/v1/"
+
+export const fetchArticles = async (searchQueary) => {
   const response = await axios.get(
-    "http://hn.algolia.com/api/v1/search?query=react"
+    "/search", {
+      params:{
+        query: searchQueary,
+      }
+    }
   );
   return response.data.hits;
 };

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect } from 'react'
-import './App.css'
 import { useState } from 'react'
+import Articles from '../Articles/Articles'
 
 function App() {
 
@@ -20,15 +20,7 @@ function App() {
   },[])
   return (
     <>
-      {articles.length > 0 && (
-        <ul>
-          {articles.map((articles) => (
-            <li key={articles.objectID}>
-              <a href={articles.url}>{articles.title}</a>
-              <h3>{articles.author}</h3>
-            </li>
-          ))}
-        </ul>)}
+      {articles.length > 0 && <Articles items={articles}></Articles>} 
     </>
   )
 }

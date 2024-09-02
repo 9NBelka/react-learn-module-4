@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Articles from '../Articles/Articles'
+import { fetchArticles } from '../../articles-api'
 
 function App() {
 
@@ -10,10 +11,8 @@ function App() {
  //патрн  так делать всегда 
   useEffect(() => {
     async function getAtricles() {
-      const response = await axios.get(
-        "http://hn.algolia.com/api/v1/search?query=react"
-      );
-      setArticles(response.data.hits);
+      const data = await fetchArticles();
+      setArticles(data);
     }
 
     getAtricles();

@@ -8,15 +8,22 @@ function App() {
 
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSearch = async (newQueary) => {
     try{
       setIsLoading(true);
+      setError(false)
       setArticles([]);
       const data = await fetchArticles(newQueary);
       setArticles(data);
       setIsLoading(false);
-    } catch (error) {}
+    } catch (e) {
+      setError(true)
+      
+    } finally{//выполняется всегда
+      setIsLoading(false);
+    }
      
   };
 
@@ -24,6 +31,7 @@ function App() {
     <>
       <SearchForm onSearch={handleSearch}/>
       {isLoading && <b>Loading articles...</b>}
+      {error && <b>Oops! Error! Reload!</b>}
       {articles.length > 0 && <Articles items={articles}></Articles>} 
     </>
   )

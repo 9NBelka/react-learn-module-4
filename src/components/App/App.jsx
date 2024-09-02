@@ -12,6 +12,7 @@ function App() {
   const handleSearch = async (newQueary) => {
     try{
       setIsLoading(true);
+      setArticles([]);
       const data = await fetchArticles(newQueary);
       setArticles(data);
       setIsLoading(false);

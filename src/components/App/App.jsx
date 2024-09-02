@@ -7,15 +7,22 @@ import { fetchArticles } from '../../articles-api'
 function App() {
 
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (newQueary) => {
-     const data = await fetchArticles(newQueary);
-     setArticles(data);
+    try{
+      setIsLoading(true);
+      const data = await fetchArticles(newQueary);
+      setArticles(data);
+      setIsLoading(false);
+    } catch (error) {}
+     
   };
 
   return (
     <>
       <SearchForm onSearch={handleSearch}/>
+      {isLoading && <b>Loading articles...</b>}
       {articles.length > 0 && <Articles items={articles}></Articles>} 
     </>
   )

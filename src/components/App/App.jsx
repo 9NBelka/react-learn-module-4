@@ -22,11 +22,13 @@ function App() {
 
     async function getData() {
       try {
+      setIsLoading(true)
+      setError(false);
       const data = await fetchArticles(query, page);
       setArticles(prevArticles => {
         return [...prevArticles, ...data];
       });
-    } catch (e) {
+    } catch (eror) {
        setError(true)
     } finally{
       setIsLoading(false);
@@ -53,11 +55,10 @@ function App() {
   return (
     <>
       <SearchForm onSearch={handleSearch}/>
-      {isLoading && <b>Loading articles...</b>}
       {error && <b>Oops! Error! Reload!</b>}
       {articles.length > 0 && <Articles items={articles}></Articles>} 
-      {articles.length > 0 && <button onClick={handleLoadMore}>Load more</button>}
-      
+      {articles.length > 0 && !isLoading && <button onClick={handleLoadMore}>Load more</button>}
+      {isLoading && <p>Loading articles...</p>}
     </>
   )
 };

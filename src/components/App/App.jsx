@@ -4,6 +4,7 @@ import Articles from '../Articles/Articles'
 import SearchForm from '../SearchForm/SearchForm'
 import { fetchArticles } from '../../articles-api'
 import UseMemoExample from '../UseMemoExample/UseMemoExample'
+import UseRefExample from '../UseRefExample/UseRefExample'
 
 function App() {
   const [query, setQuery] = useState("");
@@ -62,6 +63,7 @@ function App() {
       {isLoading && <p>Loading articles...</p>}
 
       <UseMemoExample />
+      <UseRefExample />
     </>
   )
 };

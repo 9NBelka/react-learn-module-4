@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Articles from '../Articles/Articles'
 import SearchForm from '../SearchForm/SearchForm'
 import { fetchArticles } from '../../articles-api'
+import UseMemoExample from '../UseMemoExample/UseMemoExample'
 
 function App() {
   const [query, setQuery] = useState("");
@@ -51,7 +52,7 @@ function App() {
   const handleLoadMore = () => {
     setPage(page +1);
   };
-
+ 
   return (
     <>
       <SearchForm onSearch={handleSearch}/>
@@ -59,6 +60,8 @@ function App() {
       {articles.length > 0 && <Articles items={articles}></Articles>} 
       {articles.length > 0 && !isLoading && <button onClick={handleLoadMore}>Load more</button>}
       {isLoading && <p>Loading articles...</p>}
+
+      <UseMemoExample />
     </>
   )
 };
